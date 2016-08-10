@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<multitouch>
+    <!--
+    digitizer_options:
+      global: define the global options; it's also the default option of every app;
+      app_options:  if the certain option is specified, it will overwrite the option; or inherit from the default option;
+  -->
+    <digitizer_options>
+        <global>
+            <dbclick_optimize enable="false" interval="300" dis="18.690000" />
+            <writing_optimize enable="true" max_length_of_pen_up="4.000000" max_wait_frame_count="4" ratio_area_decrease_to="0.600000" />
+        </global>
+        <app_options name="mspaint.exe">
+            <dbclick_optimize enable="false" />
+        </app_options>
+        <app_options name="explorer.exe">
+            <dbclick_optimize enable="true" />
+        </app_options>
+    </digitizer_options>
+    <!--
+    ui_options: options for UI dialog;
+        enable_self_checking: not to popup the "Readjust" dialog.
+  -->
+    <ui_options enable_self_checking="false" />
+    <!--
+    record_option: to record the log or the hardware data, "false" for not record;
+  -->
+    <record_option log="true" data="false" />
+    <!--
+    coordinate_option:
+       bound_with_display: if bound, when the display monitor working in "Portrait" mode,
+            the touching position of TUIO/PQSDK still locate under the finger;
+  -->
+    <coordinate_option bound_with_display="true" />
+    <!--
+    taskbar_optimization: if used, when touching point near to the (auto-hide) hiden taskbar,
+          the touch point will be move to activate the hiden taskbar;
+          this tolerance is in "pixel", not in "millimeter";
+  -->
+    <taskbar_optimization use="false" tolerance="8" />
+	<win_native_touch enable_passive_pen="2"/>
+    <device_option enable_auto_scale="true" fps="-1" />
+	<composite_screen_manager is_display_duplicate="false"/>
+    <composite_screen group_id="2" total_row="1" total_col="2" display_monitor_mode="blent">
+        <physical_screen serial_number="is4211001222" row_in_matrix="0" col_in_matrix="0" virtual_digitizer_id="0">
+            <calibration param0="1.000000" param1="0.000000" param2="0.000000" param3="0.000000" param4="0.000000" param5="1.000000" param6="0.000000" param7="0.000000" param8="0.000000" param9="0.000000" param10="1.000000" param11="0.000000" param12="0.000000" param13="0.000000" param14="0.000000" param15="1.000000" />
+        </physical_screen>
+        <physical_screen serial_number="is4211001231" row_in_matrix="0" col_in_matrix="1" virtual_digitizer_id="0">
+            <calibration param0="1.000000" param1="0.000000" param2="0.000000" param3="0.000000" param4="0.000000" param5="1.000000" param6="0.000000" param7="0.000000" param8="0.000000" param9="0.000000" param10="1.000000" param11="0.000000" param12="0.000000" param13="0.000000" param14="0.000000" param15="1.000000" />
+        </physical_screen>
+    </composite_screen>
+    <!--
+    multi_display_screen_manager:
+      manage the configure of multi_display_screen;
+  -->
+    <multi_display_screen_manager>
+        <!--
+      multi_display_screen: one touch screen can be divided to be more than one screen, and
+			  each sub-screen will be mapped with one display monitor, those monitor should be in a same
+			  display resolution;
+           serial_number: the sn of the physical screen; can be a regular expression of Perl;
+    -->
+        <multi_display_screen serial_number="ira400241001" configure_name="ira400241001" />
+        <multi_display_screen serial_number="ira100624007" configure_name="ira100624007" />
+        <multi_display_screen serial_number="ira101018001" configure_name="ira101018001" />
+        <!--
+      mds_configure:
+           name: every configure should have a unique name;
+           display_monitor_mode: only "blent" supported for Linux/Mac;
+           sub_display_screen:
+			        calibration: store the touch points of calibration,as default, they are calculated by "total_row(cal)" and "row(cal)_in_matrix";
+			      						 for example, point_0_x(left-top): (RESOLUTION/4)/total_col + col_in_matrix * RESOLUTION / total_col
+			                                point_0_y(left-top): (RESOLUTION/4)/total_row + row_in_matrix * RESOLUTION / total_row
+			      						 here, the "RESOLUTION" is the physical resolution of touch screen, it's "32768" at present;
+  -->
+        <!-- PR0241 -->
+        <mds_configure name="ira400241001" total_row="2" total_col="1" display_monitor_mode="blent">
+            <sub_display_screen row_in_matrix="0" col_in_matrix="0">
+                <calibration point_0_x="8192" point_0_y="4096" point_1_x="24576" point_1_y="4096" point_2_x="8192" point_2_y="12288" point_3_x="24576" point_3_y="12288" />
+            </sub_display_screen>
+            <sub_display_screen row_in_matrix="1" col_in_matrix="0">
+                <calibration point_0_x="8192" point_0_y="20480" point_1_x="24576" point_1_y="20480" point_2_x="8192" point_2_y="28672" point_3_x="24576" point_3_y="28672" />
+            </sub_display_screen>
+        </mds_configure>
+        <!-- PR0240 -->
+        <mds_configure name="ira100624007" total_row="1" total_col="2" display_monitor_mode="blent">
+            <sub_display_screen row_in_matrix="0" col_in_matrix="0">
+                <calibration point_0_x="4096" point_0_y="8192" point_1_x="12288" point_1_y="8192" point_2_x="4096" point_2_y="24576" point_3_x="12288" point_3_y="24576" />
+            </sub_display_screen>
+            <sub_display_screen row_in_matrix="0" col_in_matrix="1">
+                <calibration point_0_x="20480" point_0_y="8192" point_1_x="28672" point_1_y="8192" point_2_x="20480" point_2_y="24576" point_3_x="28672" point_3_y="24576" />
+            </sub_display_screen>
+        </mds_configure>
+        <!-- PR1029 -->
+        <mds_configure name="utouch_4_displays" total_row="4" total_col="1" display_monitor_mode="blent">
+            <sub_display_screen row_in_matrix="0" col_in_matrix="0">
+                <calibration point_0_x="8192" point_0_y="2048" point_1_x="24576" point_1_y="2048" point_2_x="8192" point_2_y="6144" point_3_x="24576" point_3_y="6144" />
+            </sub_display_screen>
+            <sub_display_screen row_in_matrix="1" col_in_matrix="0">
+                <calibration point_0_x="8192" point_0_y="10240" point_1_x="24576" point_1_y="10240" point_2_x="8192" point_2_y="14336" point_3_x="24576" point_3_y="14336" />
+            </sub_display_screen>
+            <sub_display_screen row_in_matrix="2" col_in_matrix="0">
+                <calibration point_0_x="8192" point_0_y="18432" point_1_x="24576" point_1_y="18432" point_2_x="8192" point_2_y="22528" point_3_x="24576" point_3_y="22528" />
+            </sub_display_screen>
+            <sub_display_screen row_in_matrix="3" col_in_matrix="0">
+                <calibration point_0_x="8192" point_0_y="26624" point_1_x="24576" point_1_y="26624" point_2_x="8192" point_2_y="30720" point_3_x="24576" point_3_y="30720" />
+            </sub_display_screen>
+        </mds_configure>
+        <!-- scalable -->
+        <mds_configure name="ira101018001" total_row="1" total_col="6" display_monitor_mode="blent">
+            <sub_display_screen row_in_matrix="0" col_in_matrix="0">
+                <calibration point_0_x="1365" point_0_y="8192" point_1_x="4096" point_1_y="8192" point_2_x="1365" point_2_y="24576" point_3_x="4096" point_3_y="24576" />
+            </sub_display_screen>
+            <sub_display_screen row_in_matrix="0" col_in_matrix="1">
+                <calibration point_0_x="6826" point_0_y="8192" point_1_x="9557" point_1_y="8192" point_2_x="6826" point_2_y="24576" point_3_x="9557" point_3_y="24576" />
+            </sub_display_screen>
+            <sub_display_screen row_in_matrix="0" col_in_matrix="2">
+                <calibration point_0_x="12287" point_0_y="8192" point_1_x="15018" point_1_y="8192" point_2_x="12287" point_2_y="24576" point_3_x="15018" point_3_y="24576" />
+            </sub_display_screen>
+            <sub_display_screen row_in_matrix="0" col_in_matrix="3">
+                <calibration point_0_x="17749" point_0_y="8192" point_1_x="20480" point_1_y="8192" point_2_x="17749" point_2_y="24576" point_3_x="20480" point_3_y="24576" />
+            </sub_display_screen>
+            <sub_display_screen row_in_matrix="0" col_in_matrix="4">
+                <calibration point_0_x="23210" point_0_y="8192" point_1_x="25941" point_1_y="8192" point_2_x="23210" point_2_y="24576" point_3_x="25941" point_3_y="24576" />
+            </sub_display_screen>
+            <sub_display_screen row_in_matrix="0" col_in_matrix="5">
+                <calibration point_0_x="28671" point_0_y="8192" point_1_x="31402" point_1_y="8192" point_2_x="28671" point_2_y="24576" point_3_x="31402" point_3_y="24576" />
+            </sub_display_screen>
+        </mds_configure>
+    </multi_display_screen_manager>
+    <!--
+    display_mode:
+      the touch screen can work only on the primary display,
+      but there may be multi-displays connected with the PC;
+      here, display_mode can be specified to a single screen(multi_display_screen is also a single screen);
+      ATTENTION: display_mode DONOT take effect on composite screen;
+
+      calibration: "primary_display","virtual_desktop";
+           "primary_display": the calibration window will only show on the primary display monitor;
+           "virtual_desktop": the calibration window will show on the virutal desktop;
+      pqsdk_resolution: "primary_display","virtual_desktop";
+           "primary_display": the coordinate of touch points received in the client based on pqsdk is based on the resolution
+                              of the primary display;
+           "virtual_desktop": .... of the virtual desktop;
+      mouse_input: "primary_display","virtual_desktop";
+           "primary_display": the mouse simulator will send out the mouse event or message only to the primary display;
+           "virtual_desktop": ... to the virtual desktop;
+  -->
+		<display_mode>
+        <screen serial_number="" calibration="virtual_desktop" pqsdk_resolution="virtual_desktop" mouse_input="virtual_desktop">
+            <calibration_expected_points point_0_x="8192" point_0_y="8192" point_1_x="24576" point_1_y="8192" point_2_x="8192" point_2_y="24576" point_3_x="24576" point_3_y="24576" />
+        </screen>
+    </display_mode>
+    <ui_config>
+        <calibration_expected_points point_0_x="8192" point_0_y="8192" point_1_x="24576" point_1_y="8192" point_2_x="8192" point_2_y="24576" point_3_x="24576" point_3_y="24576" />
+        <calibration param0="1.000000" param1="0.000000" param2="0.000000" param3="0.000000" param4="0.000000" param5="1.000000" param6="0.000000" param7="0.000000" param8="0.000000" param9="0.000000" param10="1.000000" param11="0.000000" param12="0.000000" param13="0.000000" param14="0.000000" param15="1.000000" />
+    </ui_config>
+    <!-- Tuio:
+        profile can be "2dcur"(default)/ "_rect";
+        "2dcur": the server will send out the "/tuio/2Dcur" messages,  /tuio/2Dcur set s x y X Y m
+        "_rect": the server will send out the "/tuio/_rect" messages,  /tuio/_rect set s i x y w h a p t
+            "i" -> marker id, "w" -> width, "h" -> height, "a" -> angle (reserved now);
+            "w"/"h" are float value in [0,1];
+            "p" -> pressure, float value in [0,1];
+            "t" -> type, 0:TOUCH, 1:PASSIVE_PEN, 2:ACTIVE_PEN, 4:ERASER, 6:ACTIVE_ERASER
+    -->
+    <tuio tuio_support="true" flash_tuio_support="true" profile="2dcur">
+        <server type="udp" host="127.0.0.1" port="3333" />
+        <server type="tcp" host="127.0.0.1" port="3000" />
+    </tuio>
+    <gesture_tolerance>
+        <common>
+            <move dis="0.000000" initial_move_dis="6" initial_move_wait_time="300" />
+            <other wait_next_point_time="60" />
+        </common>
+        <singlepoint>
+            <click interval="200" dis="13.35" />
+            <dbclick interval="300" dis="18.69" />
+            <move_dir dis="18.69" />
+            <move_to_verge dis="18.69" />
+            <big_point big_point_area="900" />
+            <long_time_down dis="26.7" interval="2000" />
+        </singlepoint>
+        <twopoints>
+            <common determine_move_offset="26.7" near_down_dis="136.8" />
+            <nearparallel dis="139.5" angle="10" />
+            <nearslope anchor_rect="26.7" />
+            <rotate anchor_rect="26.7" />
+        </twopoints>
+    </gesture_tolerance>
+    <!--
+    global mouse simulation disable:
+        set the "enable_mouse_key_simulation" to be "false";
+
+    when the finger touching at your application,
+    if you don't want to take any action you can add a apptrans like below
+        <apptrans appname="your_application.exe" transname="no_action" />
+    ;if you'd like it to act just like a mouse with only left button,you can add a apptrans like below
+        <apptrans appname="your_application.exe" transname="only_left_mouse" />
+    ;if you'd like it to act without the right button of mouse(with left button and some keys),you can add a apptrans like below
+        <apptrans appname="your_application.exe" transname="no_right_mouse" />
+  -->
+    <server input_interval="1" key_send_interval="200" default_mouse_position="center" socket_port="21555" enable_mouse_key_simulation="true">
+        <translator_manager>
+            <!--<translator name="user_defined"></translator>-->
+            <!--
+        global mouse simulation disable:
+            set the <tuple> below to be
+            "<tuple operation="assign" left="default" right="no_action"></tuple>"
+            to disable the "mouse simulation" of our touch screen globally.
+            or
+            <tuple operation="assign" left="default" right="default"></tuple>
+            to enable it.
+        Attention: the touching cursor of Windows 7 native touch is NOT "simulated mouse" here.
+      -->
+            <tuple operation="assign" left="default" right="default" />
+        </translator_manager>
+        <apptrans appname="googleearth" transname="user_01" />
+        <apptrans appname="google earth" transname="user_01" />
+        <apptrans appname="googleearth-bin" transname="user_01" />
+        <apptrans appname="safari" transname="user_webbrowser" />
+    </server>
+</multitouch>
