@@ -11,7 +11,7 @@ module_name="usb_pqlabs"
 kernel_build_usb_path=/lib/modules/${kernel_ver}/build/drivers/usb/
 kernel_usb_path=/lib/modules/${kernel_ver}/kernel/drivers/usb/
 
-driver_folder="pqlabs"
+driver_folder="src"
 
 target_dir="/opt/pqlabs/driver"
 linux_release=$(cat /etc/*-release)
