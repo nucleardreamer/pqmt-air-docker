@@ -1,9 +1,9 @@
-FROM nucleardreamer/air-docker:latest
+FROM nucleardreamer/air-docker:0.2.0
 
 MAINTAINER Flynn Joffray <nucleardreamer@gmail.com>
 LABEL AUTHOR="Flynn Joffray <nucleardreamer@gmail.com>"
 LABEL NAME="pqmt-air-docker"
-LABEL VERSION="0.1.0"
+LABEL VERSION="0.2.0"
 
 RUN apt-get update && apt-get install -y -q xvfb
 
