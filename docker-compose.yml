@@ -1,0 +1,14 @@
+version: '2'
+volumes:
+  pqlabs: {}
+services:
+  pqlabs:
+    container_name: "pqlabs"
+    image: nucleardreamer/pqmt-air-docker
+    privileged: true
+    network_mode: "host"
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /dev:/dev
+      - pqlabs:/data/oak/pqlabs
+    
