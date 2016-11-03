@@ -17,4 +17,6 @@ RUN tar jxf mt_driver_kit_linux.tar.bz2 && \
 
 ENTRYPOINT ["/usr/local/bin/run"]
 
+EXPOSE 3333
+
 ENV DISPLAY=:0
